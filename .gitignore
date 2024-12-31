@@ -26,10 +26,24 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.env
 
 # vercel
 .vercel
 
+# Contentlayer
+.contentlayer
+credentials.json
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# package manager
+*-lock.json
+yarn.lock
+bun.lockb
+./src/drizzle
+ca.pem
+secret.txt
+.infuraprojectid

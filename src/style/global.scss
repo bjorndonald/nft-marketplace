@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'button';
+@import 'typography';
+
+html {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100%;
+    -webkit-overflow-scrolling: touch;
+    overflow-scrolling: touch;
+}
+
+body {
+    overflow-y: visible;
+    position: relative;
+    overflow-x: hidden;
+}
+
+html,
+body {
+    margin: 0;
+}
+
+body{
+    @apply text-base-content bg-base-100 min-h-screen
+}
+
+.discord:hover path {
+    @apply fill-[#7289da]
+}
+
+.container {
+    @apply max-w-breakpoint px-4 w-full mx-auto;
+}
