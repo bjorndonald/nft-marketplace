@@ -11,7 +11,7 @@ const ErrorComponent = (props: { error: Error }) => {
   const { error } = props;
   const [, ...errorStack] = error.stack?.toString().split(/\r?\n/) || [];
   return (
-    <Section id={"error"} className={"w-full h-full"}>
+    <Section id={"error"} className={"w-full pt-20 desktop:pt-40 pb-10 mx-auto max-w-xl h-full"}>
       <h1 className={"text-error mb-3"}>
         Something went wrong
       </h1>
@@ -69,7 +69,7 @@ const ErrorComponent = (props: { error: Error }) => {
         alt={"Monkey throwing laptop aggressively"}
         loading={"lazy"}
         decoding={"async"}
-        className={"mt-3"}
+        className={"mt-3 mx-auto"}
         style={{ maxWidth: 425 }}
       />
     </Section>

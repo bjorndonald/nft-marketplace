@@ -1,11 +1,35 @@
-import React from 'react'
+"use client";
+import React, { useContext, useEffect, useState } from 'react'
 import NftCard from '@/components/molecules/nft'
 import NFT1 from '@/assets/images/nfts/NFT1.png'
 import NFT2 from '@/assets/images/nfts/NFT2.png'
 import avatar1 from '@/assets/images/avatars/avatar1.png'
 import avatar2 from '@/assets/images/avatars/avatar2.png'
+import { NFTMarketplaceContext } from '@/Contexts/NFTMarketplaceContext';
 
 const Marketplace = () => {
+    const { fetchNFTs } = useContext(NFTMarketplaceContext)
+    const [items, setItems] = useState<any[]>([])
+
+    const init = async() => {
+        try {
+            const items = await fetchNFTs()
+            console.log("items", items)
+            setItems(items)
+        } catch (error) {
+            
+        }
+       
+    }
+
+    useEffect(() => {
+        init()
+    
+      return () => {
+      }
+    }, [])
+    console.log(items)
+
   return (
       <div className='grid grid-rows-[70px_min-content] items-end gap-0 border-t border-base-200 relative grid-cols-[1fr_156px_156px_1fr] tablet:grid-cols-[1fr_340px_340px_1fr] desktop:grid-cols-[1fr_525px_525px_1fr]'>
           <input className='peer/nfts opacity-0 cursor-pointer absolute h-[70px] top-0 left-1/2 w-[156px] tablet:w-[340px] desktop:w-[525px] -translate-x-full z-[2]' defaultChecked type="radio" name="action" id="nfts" />

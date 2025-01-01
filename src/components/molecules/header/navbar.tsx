@@ -1,10 +1,13 @@
-import React from "react"
+"use client"
+import React, { useContext, useEffect } from "react"
 import { ButtonsGroup, ExtraNavLinks, Nav, NavItem, NavLink, NavList, NavPageLink, NavPageLinkText } from "./navbar.style"
 import cx, { TWComponentProps } from "@/utils/cx";
 import Logo from "@/components/atoms/logo";
 import { NavToggle } from "./nav-toggle";
 import { Button } from "@/components/atoms/button";
 import User from "@/components/icons/User.icon";
+import { NFTMarketplaceContext } from "@/Contexts/NFTMarketplaceContext";
+import { useRouter } from "next/navigation";
 
 const linkList = [
     {
@@ -17,11 +20,7 @@ const linkList = [
         href: "/rankings",
         className: "text-orange",
     },
-    {
-        title: "Connect to wallet",
-        href: "/wallet",
-        className: "text-purple",
-    },
+    
 ];
 
 interface NavbarProps extends TWComponentProps<typeof Nav> {
@@ -31,7 +30,19 @@ interface NavbarProps extends TWComponentProps<typeof Nav> {
 }
 
 const Navbar = (props: NavbarProps) => {
+    const navigate = useRouter()
     const { expanded, className } = props;
+    const {currentAccount, connectWallet} = useContext(NFTMarketplaceContext)
+
+    const { checkContract, checkIfWalletConnected } = useContext(NFTMarketplaceContext)
+    useEffect(() => {
+        checkContract()
+        checkIfWalletConnected()
+        return () => {
+
+        }
+    }, [])
+    console.log(currentAccount)
     return (
         <Nav id={"navigation"} className={className}>
             <NavLink
@@ -75,6 +86,23 @@ const Navbar = (props: NavbarProps) => {
                         </NavItem>
                     );
                 })}
+                {!!currentAccount ? <>
+                    
+                    <Button onClick={() => navigate.push("upload-nft")} title="Create NFT">Create</Button>
+                   
+                {/* <NavPageLinkText className="px-3 py-5">{currentAccount}</NavPageLinkText> */}
+                    
+                </>  : <NavItem 
+                className="cursor-pointer px-3 py-5"
+                    onClick={() => {
+                        console.log("issiur")
+                        connectWallet()}}
+                >
+
+                    <NavPageLinkText className="hover:text-white">Connect to Wallet</NavPageLinkText>
+
+                </NavItem>}
+                
                 <ExtraNavLinks aria-hidden={"true"} />
                 <ExtraNavLinks>
                     <Button className="px-[30px] py-3" title="Sign up">

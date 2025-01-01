@@ -1,8 +1,9 @@
 import React from 'react'
+import Minter from './Minter'
 
 const UploadNFTPage = () => {
   return (
-    <div>UploadNFTPage</div>
+    <div className='desktop:pt-24 pt-10'><Minter /></div>
   )
 }
 

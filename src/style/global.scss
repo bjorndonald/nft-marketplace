@@ -35,3 +35,7 @@ body{
 .container {
     @apply max-w-breakpoint px-4 w-full mx-auto;
 }
+
+input {
+    @apply text-base-content bg-base-200
+}

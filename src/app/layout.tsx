@@ -7,6 +7,7 @@ import Header from "@/components/molecules/header";
 import { Main } from "@/components/atoms/main";
 import { Footer } from "@/components/molecules/footer";
 import { NFTMarketplaceProvider } from "@/Contexts/NFTMarketplaceContext";
+import Body from "./body";
 
 export const metadata = {
   ...createMetadata({
@@ -44,12 +45,9 @@ export default function RootLayout({
         <Meta />
       </head>
       <body className={WorkSans.className}>
-        <NFTMarketplaceProvider>
-          <Header />
+        <Body>
           {children}
-          <Footer /> 
-        </NFTMarketplaceProvider>
-        
+</Body>        
       </body>
     </html>
   )
